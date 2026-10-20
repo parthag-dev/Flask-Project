@@ -59,8 +59,6 @@ def view_tasks():
         return redirect(url_for('auth.login'))
     return render_template('tasks.html') # Simply serves your HTML layout file
 
-# ==================== CLEAN API ENDPOINTS ====================
-
 # 2. GET API: Fetch all tasks from the database
 @tasks_bp.route('/api/tasks', methods=['GET'])
 def get_tasks_api():
@@ -83,7 +81,6 @@ def toggle_status(task_id):
     if not task:
         return jsonify({"success": False, "error": "Task not found"}), 404
 
-    # Your exact state cycle logic
     task.status = 'Working' if task.status == 'Pending' else 'Done' if task.status == 'Working' else 'Pending'
     db.session.commit()
 
@@ -95,7 +92,7 @@ def toggle_status(task_id):
         Task.query.delete()
         db.session.commit()
         
-        session.clear()  # <-- CRITICAL: Safely destroys the user login session logs
+        session.clear()  # <-- Safely destroys the user login session logs
         return jsonify({"success": True, "cleared": True, "logged_out": True})
 
     return jsonify({"success": True, "cleared": False, "logged_out": False})

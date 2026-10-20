@@ -27,7 +27,7 @@
             </tr>
         </thead>
         
-        <!-- The critical hook: JavaScript will inject rows dynamically here -->
+        <!-- JavaScript will inject rows dynamically here -->
         <tbody id="taskTableBody"></tbody>
     </table>
 
@@ -36,6 +36,5 @@
 
 </div>
 
-<!-- Hook up your script file -->
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

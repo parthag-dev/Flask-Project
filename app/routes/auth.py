@@ -3,8 +3,9 @@ from flask import Flask, Blueprint, session, redirect, render_template, flash, r
 auth_bp = Blueprint("auth", __name__)
 
 USER_CREDENTIALS = {
-    'username': 'admin',
-    'password': '1234'
+    'Parth': "1234",
+    'Syon': "5678",
+    'Ayushmaan': "9123"
 }
 
 @auth_bp.route('/login', methods=["GET", "POST"])
@@ -13,7 +14,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        if username == USER_CREDENTIALS['username'] and password == USER_CREDENTIALS['password']:
+        if username in USER_CREDENTIALS and password == USER_CREDENTIALS[username]:
             session['user'] = username
             flash('Login Successful', 'success')
             return render_template('tasks.html')
