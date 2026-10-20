@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Tasks {% endblock %}
+
+{% block content %}
+<div class="task-box">
+    <h2>Your Tasks</h2>
+    
+    <div class="task-form">
+        <input type="text" id="taskInput" placeholder="Add New task Task (Time)" required>
+        <button type="button" class="btn" onclick="addNewTask()">Add</button>
+    </div>
+
+    <!-- Clear All Button Wrapper -->
+    <div id="clearButtonWrapper">
+        <button type="button" class="btn btn-clear" onclick="clearAllTasks()">Clear All Tasks</button>
+    </div>
+    <br>
+
+    <!-- Main Data Table Layout -->
+    <table class="task-table" id="taskTableElement">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Task (Time)</th>
+                <th>Status</th>
+                <th>Change Status</th>
+            </tr>
+        </thead>
+        
+        <!-- The critical hook: JavaScript will inject rows dynamically here -->
+        <tbody id="taskTableBody"></tbody>
+    </table>
+
+    <!-- Element to display when there are no tasks in the database -->
+    <p id="noTasksMessage" style="text-align: center; color: red; display: none;">No Tasks Added Yet!! Plz Add Atleast 1 Task...</p>
+
+</div>
+
+<!-- Hook up your script file -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
